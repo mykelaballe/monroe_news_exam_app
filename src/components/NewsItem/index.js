@@ -7,12 +7,13 @@ import Row from '../Row'
 import Spacer from '../Spacer'
 import {Surface, TouchableRipple} from 'react-native-paper'
 import {useNavigation} from '@react-navigation/native'
+import {NEWS_DETAIL} from '../../consts/Routes'
 
 export default ({data}) => {
 
     const navigation = useNavigation()
 
-    const handlePress = () => navigation.navigate('NewsDetail', {news: data})
+    const handlePress = () => navigation.navigate(NEWS_DETAIL, {news: data})
 
     return (
         <Surface style={style.outerContainer}>
