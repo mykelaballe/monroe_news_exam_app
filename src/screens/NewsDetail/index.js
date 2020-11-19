@@ -18,7 +18,7 @@ export default ({route, navigation}) => {
                 <Text>By {by}</Text>
                 <Text>Published {published_date}</Text>
 
-                <Text style={style.description}>{description}</Text>
+                <Text b style={style.description}>{description}</Text>
             </ScrollView>
 
             <Footer>
@@ -34,7 +34,6 @@ const style = StyleSheet.create({
         marginBottom: Metrics.rg
     },
     description: {
-        fontWeight: 'bold',
         marginTop: Metrics.md
     },
     img: {

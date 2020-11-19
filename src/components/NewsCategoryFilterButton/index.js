@@ -1,6 +1,7 @@
 import React from 'react'
 import {StyleSheet, Dimensions} from 'react-native'
 import Button from '../Button'
+import {Colors, Metrics} from '../../themes'
 
 const WIDTH = (Dimensions.get('window').width / 3 ) - 25
 
@@ -13,8 +14,8 @@ export default ({text}) => {
 
 const style = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',
+        backgroundColor: Colors.light,
         width: WIDTH,
-        margin: 5
+        margin: Metrics.sm
     }
 })

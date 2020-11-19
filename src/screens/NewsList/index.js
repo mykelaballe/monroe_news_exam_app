@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {View, StyleSheet, InteractionManager} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
 import {NewsCategoryFilterButton, NewsItem, Text, FlatList, Row, Spacer} from '../../components'
-import {Metrics} from '../../themes'
+import {Colors, Metrics} from '../../themes'
 
 const Scrn = () => {
 
@@ -115,7 +115,7 @@ const style = StyleSheet.create({
     },
     picker: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.light,
         borderRadius: Metrics.sm
     }
 })
