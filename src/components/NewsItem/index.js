@@ -20,13 +20,13 @@ export default ({data}) => {
             <TouchableRipple onPress={handlePress} style={style.innerContainer}>
                 <Row>
 
-                    <Image source={{uri: data.thumbnail}} style={style.thumbnail} resizeMode='cover' />
+                    <Image source={{uri: data.multimedia[0].url}} style={style.thumbnail} resizeMode='cover' />
 
                     <Spacer h sm />
 
                     <View style={{flex: 1}}>
                         <Text b style={style.title} numberOfLines={3}>{data.title}</Text>
-                        <Text style={style.subtext}>By: {data.by}</Text>
+                        <Text style={style.subtext} numberOfLines={1}>{data.byline}</Text>
                         <Text style={style.subtext}>Published: {data.published_date}</Text>
                     </View>
                 </Row>

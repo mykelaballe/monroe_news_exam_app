@@ -5,20 +5,20 @@ import {Metrics} from '../../themes'
 
 export default ({route, navigation}) => {
 
-    const {title, description, by, published_date, thumbnail} = route.params.news
+    const {title, abstract, byline, published_date, multimedia} = route.params.news
 
     const handleBack = () => navigation.pop()
 
     return (
         <>
-            <Image source={{uri: thumbnail}} style={style.img} resizeMode='cover' />
+            <Image source={{uri: multimedia[0].url}} style={style.img} resizeMode='cover' />
 
             <ScrollView contentContainerStyle={{padding: Metrics.lg}}>
                 <Text b style={style.title}>{title}</Text>
-                <Text>By {by}</Text>
+                <Text>{byline}</Text>
                 <Text>Published {published_date}</Text>
 
-                <Text b style={style.description}>{description}</Text>
+                <Text b style={style.description}>{abstract}</Text>
             </ScrollView>
 
             <Footer>
