@@ -7,13 +7,16 @@ const Stack = createStackNavigator()
 export default () => (
     <Stack.Navigator>
         <Stack.Screen
-            name='NYT News Feed'
+            name='NewsFeed'
             component={Scrn.NewsList}
         />
 
         <Stack.Screen
-            name='News Detail'
+            name='NewsDetail'
             component={Scrn.NewsDetail}
+            options={({route}) => ({
+                title: route.params.news.title
+            })}
         />
     </Stack.Navigator>
 )
