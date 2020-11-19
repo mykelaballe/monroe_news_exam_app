@@ -1,6 +1,7 @@
 import React from 'react'
-import {ScrollView, StyleSheet, View, Text, Image} from 'react-native'
-import {Button} from 'react-native-paper'
+import {ScrollView, StyleSheet} from 'react-native'
+import {Image, Button, Text, Footer} from '../../components'
+import {Metrics} from '../../themes'
 
 export default ({route, navigation}) => {
 
@@ -10,31 +11,34 @@ export default ({route, navigation}) => {
 
     return (
         <>
-            <Image source={{uri: thumbnail}} style={{width:undefined,height:250}} resizeMode='cover' />
+            <Image source={{uri: thumbnail}} style={style.img} resizeMode='cover' />
 
-            <ScrollView contentContainerStyle={{padding:20}}>
-                <Text style={style.title}>{title}</Text>
+            <ScrollView contentContainerStyle={{padding: Metrics.lg}}>
+                <Text b style={style.title}>{title}</Text>
                 <Text>By {by}</Text>
                 <Text>Published {published_date}</Text>
 
                 <Text style={style.description}>{description}</Text>
             </ScrollView>
 
-            <View style={{paddingVertical:10,paddingHorizontal:50}}>
-                <Button mode='outlined' onPress={handleBack}>Back</Button>
-            </View>
+            <Footer>
+                <Button text='Back' onPress={handleBack} />
+            </Footer>
         </>
     )
 }
 
 const style = StyleSheet.create({
     title: {
-        fontWeight: 'bold',
         fontSize: 18,
-        marginBottom: 10
+        marginBottom: Metrics.rg
     },
     description: {
         fontWeight: 'bold',
-        marginTop: 15
+        marginTop: Metrics.md
+    },
+    img: {
+        width: undefined,
+        height: 250
     }
 })

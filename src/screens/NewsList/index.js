@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import {View, StyleSheet, Text, FlatList, Dimensions, InteractionManager, Image} from 'react-native'
-import {Button, Surface, TouchableRipple} from 'react-native-paper'
+import {View, StyleSheet, InteractionManager} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
+import {NewsCategoryFilterButton, NewsItem, Text, FlatList, Row, Spacer} from '../../components'
+import {Metrics} from '../../themes'
 
-const SECTION_BTN_WIDTH = (Dimensions.get('window').width / 3 ) - 25
-
-const Scrn = ({navigation}) => {
+const Scrn = () => {
 
     const [categories, setCategories] = useState([])
     const [news, setNews] = useState([])
@@ -64,68 +63,41 @@ const Scrn = ({navigation}) => {
         })
     },[])
 
-    const handleViewNewDetail = news => navigation.navigate('NewsDetail',{news})
+    const renderCategory = ({item, index}) => <NewsCategoryFilterButton index={index} text={item} />
 
-    const renderCategory = ({item}) => (
-        <Button mode='outlined' uppercase={false} onPress={() => {}} style={style.sectionBtn}>
-            {item}
-        </Button>
-    )
-
-    const handleCategoryKeyExtractor = (item, index) => index.toString()
-
-    const renderNews = ({item}) => (
-        <Surface style={style.newsItemOuterContainer}>
-            <TouchableRipple onPress={() => handleViewNewDetail(item)} style={style.newsItemInnerContainer}>
-                <View style={{flexDirection: 'row'}}>
-
-                    <Image source={{uri: item.thumbnail}} style={{width:110,height:110,marginRight:15}} resizeMode='cover' />
-
-                    <View style={{flex:1}}>
-                        <Text style={style.newsItemTitle} numberOfLines={3}>{item.title}</Text>
-                        <Text style={style.newsItemSubtext}>By: {item.by}</Text>
-                        <Text style={style.newsItemSubtext}>Published: {item.published_date}</Text>
-                    </View>
-                </View>
-            </TouchableRipple>
-        </Surface>
-        
-    )
-
-    const handleNewsKeyExtractor = item => item.id.toString()
+    const renderNews = ({item, index}) => <NewsItem index={index} data={item} />
 
     return (
         <>
             <View style={style.sectionContainer}>
-                <Text style={style.sectionTitle}>Section</Text>
+                <Text b>Section</Text>
 
                 <FlatList
                     data={categories}
                     renderItem={renderCategory}
-                    keyExtractor={handleCategoryKeyExtractor}
                     numColumns={3}
                 />
             </View>
 
-            <View style={{flexDirection:'row',justifyContent:'space-between',paddingHorizontal:20}}>
-                <Picker style={{flex:1,backgroundColor:'#fff',borderRadius:5}}>
+            <Row style={style.listContainer}>
+                <Picker style={style.picker}>
                     <Picker.Item label="Location" value="" />
                     <Picker.Item label="Java" value="java" />
                     <Picker.Item label="Java" value="java" />
                 </Picker>
-                <View style={{marginHorizontal:5}} />
-                <Picker style={{flex:1,backgroundColor:'#fff',borderRadius:5}}>
+                
+                <Spacer />
+                
+                <Picker style={style.picker}>
                     <Picker.Item label="Keywords" value="" />
                     <Picker.Item label="Java" value="java" />
                     <Picker.Item label="Java" value="java" />
                 </Picker>
-            </View>
+            </Row>
 
             <FlatList
                 data={news}
                 renderItem={renderNews}
-                keyExtractor={handleNewsKeyExtractor}
-                showsVerticalScrollIndicator={false}
                 contentContainerStyle={{marginHorizontal:20}}
             />
         </>
@@ -135,30 +107,16 @@ const Scrn = ({navigation}) => {
 
 const style = StyleSheet.create({
     sectionContainer: {
-        padding: 20
+        padding: Metrics.lg
     },
-    sectionTitle: {
-        fontWeight: 'bold'
+    listContainer: {
+        justifyContent: 'space-between',
+        paddingHorizontal: Metrics.lg
     },
-    sectionBtn: {
+    picker: {
+        flex: 1,
         backgroundColor: '#fff',
-        width: SECTION_BTN_WIDTH,
-        margin: 5
-    },
-    newsItemOuterContainer: {
-        marginVertical: 5,
-        elevation: 2
-    },
-    newsItemInnerContainer: {
-        padding: 15
-    },
-    newsItemTitle: {
-        flex:1,
-        fontWeight: 'bold',
-        fontSize: 16
-    },
-    newsItemSubtext: {
-        fontSize: 12
+        borderRadius: Metrics.sm
     }
 })
 
