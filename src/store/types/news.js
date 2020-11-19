@@ -1,5 +1,7 @@
 export default {
     attemptGetNewsList: ['payload'],
     doneAttemptGetNewsList: null,
-    setNewsList: ['list']
+    setNewsList: ['list'],
+
+    setCategory: ['category']
 }

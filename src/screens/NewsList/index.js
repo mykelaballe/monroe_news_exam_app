@@ -12,12 +12,19 @@ const Scrn = ({attempting, list, attemptGetList}) => {
 
     useEffect(() => {
         InteractionManager.runAfterInteractions(() => {
-            setCategories(['World', 'Arts', 'Opinion', 'Science', 'Sports', 'Weather'])
+            setCategories([
+                {label: 'Arts', value: 'arts'},
+                {label: 'Business', value: 'business'},
+                {label: 'Food', value: 'food'},
+                {label: 'Health', value: 'health'},
+                {label: 'Politics', value: 'politics'},
+                {label: 'World', value: 'world'},
+            ])
             attemptGetList()
         })
     },[])
 
-    const renderCategory = ({item, index}) => <NewsCategoryFilterButton index={index} text={item} />
+    const renderCategory = ({item, index}) => <NewsCategoryFilterButton index={index} data={item} />
 
     const renderNews = ({item, index}) => <NewsItem index={index} data={item} />
 

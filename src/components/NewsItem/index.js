@@ -20,7 +20,7 @@ export default ({data}) => {
             <TouchableRipple onPress={handlePress} style={style.innerContainer}>
                 <Row>
 
-                    <Image source={{uri: data.multimedia[0].url}} style={style.thumbnail} resizeMode='cover' />
+                    {data.multimedia && <Image source={{uri: data.multimedia[0].url}} style={style.thumbnail} resizeMode='cover' />}
 
                     <Spacer h sm />
 

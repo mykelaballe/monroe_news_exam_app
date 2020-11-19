@@ -11,7 +11,7 @@ export default ({route, navigation}) => {
 
     return (
         <>
-            <Image source={{uri: multimedia[0].url}} style={style.img} resizeMode='cover' />
+            {multimedia && <Image source={{uri: multimedia[0].url}} style={style.img} resizeMode='cover' />}
 
             <ScrollView contentContainerStyle={{padding: Metrics.lg}}>
                 <Text b style={style.title}>{title}</Text>
