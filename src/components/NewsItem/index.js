@@ -9,6 +9,13 @@ import {Surface, TouchableRipple} from 'react-native-paper'
 import {useNavigation} from '@react-navigation/native'
 import {NEWS_DETAIL} from '../../consts/Routes'
 import {formatDateTimeAgo} from '../../utils'
+import ContentLoader, {Rect} from 'react-content-loader/native'
+
+const Loader = () => (
+    <ContentLoader width={110} height={110}>
+        <Rect x="0" y="0" rx="0" ry="0" width="110" height="110" />
+    </ContentLoader>
+)
 
 export default ({data}) => {
 
@@ -21,7 +28,13 @@ export default ({data}) => {
             <TouchableRipple onPress={handlePress} style={style.innerContainer}>
                 <Row>
 
-                    {data.multimedia && <Image source={{uri: data.multimedia[0].url}} style={style.thumbnail} resizeMode='cover' />}
+                    {data.multimedia &&
+                    <Image
+                        source={{uri: data.multimedia[0].url}}
+                        style={style.thumbnail}
+                        loader={Loader}
+                    />
+                    }
 
                     <Spacer h sm />
 

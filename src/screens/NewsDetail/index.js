@@ -1,8 +1,18 @@
 import React from 'react'
-import {ScrollView, StyleSheet} from 'react-native'
+import {ScrollView, StyleSheet, Dimensions} from 'react-native'
 import {Image, Button, Text, Footer} from '../../components'
-import {Metrics} from '../../themes'
+import {Colors, Metrics} from '../../themes'
 import {formatDateTimeAgo} from '../../utils'
+import ContentLoader, {Rect} from 'react-content-loader/native'
+
+const IMAGE_WIDTH = Dimensions.get('window').width
+const IMAGE_HEIGHT = 250
+
+const Loader = () => (
+    <ContentLoader backgroundColor={Colors.light} width={IMAGE_WIDTH} height={IMAGE_HEIGHT}>
+        <Rect x="0" y="0" rx="0" ry="0" width={IMAGE_WIDTH} height={IMAGE_HEIGHT} />
+    </ContentLoader>
+)
 
 export default ({route, navigation}) => {
 
@@ -12,7 +22,7 @@ export default ({route, navigation}) => {
 
     return (
         <>
-            {multimedia && <Image source={{uri: multimedia[0].url}} style={style.img} resizeMode='cover' />}
+            {multimedia && <Image source={{uri: multimedia[0].url}} style={style.img} loader={Loader} />}
 
             <ScrollView contentContainerStyle={{padding: Metrics.lg}}>
                 <Text b style={style.title}>{title}</Text>
@@ -38,7 +48,7 @@ const style = StyleSheet.create({
         marginTop: Metrics.md
     },
     img: {
-        width: undefined,
-        height: 250
+        width: IMAGE_WIDTH,
+        height: IMAGE_HEIGHT
     }
 })
