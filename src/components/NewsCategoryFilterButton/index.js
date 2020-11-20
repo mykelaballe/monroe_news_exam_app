@@ -7,12 +7,13 @@ import Actions from '../../store/actions'
 
 const WIDTH = (Dimensions.get('window').width / 3 ) - 25
 
-const Cmp = ({data, selectedCategory, attemptGetNews}) => {
+const Cmp = ({data, attempting, selectedCategory, attemptGetNews}) => {
 
     const handlePress = () => attemptGetNews({category: data.value})
 
     return (
         <Button
+            disabled={attempting}
             color={selectedCategory === data.value ? 'purple' : Colors.brand}
             text={data.label}
             uppercase={false}
@@ -30,6 +31,7 @@ const style = StyleSheet.create({
 })
 
 const mapStateToProps = ({news}) => ({
+    attempting: news.attempting,
     selectedCategory: news.category
 })
 
