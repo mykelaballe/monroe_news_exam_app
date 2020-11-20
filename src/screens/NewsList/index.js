@@ -5,6 +5,7 @@ import {NewsCategoryFilterButton, NewsItem, Text, FlatList, Row, Spacer, Activit
 import {Colors, Metrics} from '../../themes'
 import {connect} from 'react-redux'
 import Actions from '../../store/actions'
+import Loader from './Loader'
 
 const Scrn = ({attempting, list, location, attemptGetList}) => {
 
@@ -61,7 +62,7 @@ const Scrn = ({attempting, list, location, attemptGetList}) => {
                 </Picker>
             </Row>
 
-            {attempting && <ActivityIndicator />}
+            {attempting && <Loader />}
 
             {!attempting &&
             <FlatList
