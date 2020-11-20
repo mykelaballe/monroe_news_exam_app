@@ -6,9 +6,10 @@ import {Colors, Metrics} from '../../themes'
 import {connect} from 'react-redux'
 import Actions from '../../store/actions'
 
-const Scrn = ({attempting, list, attemptGetList}) => {
+const Scrn = ({attempting, list, location, attemptGetList}) => {
 
     const [categories, setCategories] = useState([])
+    const [locations, setLocations] = useState([])
 
     useEffect(() => {
         InteractionManager.runAfterInteractions(() => {
@@ -20,9 +21,14 @@ const Scrn = ({attempting, list, attemptGetList}) => {
                 {label: 'Politics', value: 'politics'},
                 {label: 'World', value: 'world'},
             ])
+
+            setLocations(['Australia' ,'Afghanistan', 'Canada', 'Ecuador', 'Israel', 'Mexico', 'Thailand', 'United States', 'Venezuela'])
+
             attemptGetList()
         })
     },[])
+
+    const handleChangeLocation = value => attemptGetList({location: value})
 
     const renderCategory = ({item, index}) => <NewsCategoryFilterButton index={index} data={item} />
 
@@ -41,10 +47,9 @@ const Scrn = ({attempting, list, attemptGetList}) => {
             </View>
 
             <Row style={style.listContainer}>
-                <Picker style={style.picker}>
-                    <Picker.Item label="Location" value="" />
-                    <Picker.Item label="Java" value="java" />
-                    <Picker.Item label="Java" value="java" />
+                <Picker style={style.picker} selectedValue={location} onValueChange={handleChangeLocation}>
+                    <Picker.Item label='Location' value='' />
+                    {locations.map((loc, index) => <Picker.Item key={index} label={loc} value={loc} />)}
                 </Picker>
                 
                 <Spacer />
@@ -87,7 +92,8 @@ const style = StyleSheet.create({
 
 const mapStateToProps = ({news}) => ({
     attempting: news.attempting,
-    list: news.list
+    list: news.list,
+    location: news.location
 })
 
 const mapDispatchToProps = dispatch => ({

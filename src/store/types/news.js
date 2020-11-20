@@ -3,5 +3,6 @@ export default {
     doneAttemptGetNewsList: null,
     setNewsList: ['list'],
 
-    setCategory: ['category']
+    setCategory: ['category'],
+    setLocation: ['location']
 }

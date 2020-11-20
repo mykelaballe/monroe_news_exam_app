@@ -1,19 +1,35 @@
-import {takeLatest, put, call} from 'redux-saga/effects'
+import {takeLatest, put, call, select} from 'redux-saga/effects'
 import Actions from '../actions'
 import API from '../../api'
 import {DEFAULT_CATEGORY} from '../../consts'
 
-function * getList({payload}) {
+function * getList({payload = {}}) {
     try {
 
-        const category = payload && payload.category ? payload.category : DEFAULT_CATEGORY
+        const state = yield select()
+
+        let location = state.news.location || ''
+
+        if(payload.location !== undefined) {
+            location = payload.location
+            yield put(Actions.Creators.setLocation(location))
+        }
+
+        const category = (payload.category || state.news.category) || DEFAULT_CATEGORY
 
         yield put(Actions.Creators.setCategory(category))
 
         const res = yield call(API.getNews, category)
 
         if(res.status === 200) {
-            yield put(Actions.Creators.setNewsList(res.data.results))
+
+            let list = res.data.results
+
+            if(location) {
+                list = list.filter(item => item.geo_facet.indexOf(location) >= 0)
+            }
+
+            yield put(Actions.Creators.setNewsList(list))
         }
     }
     catch(err) {
