@@ -8,6 +8,7 @@ import Spacer from '../Spacer'
 import {Surface, TouchableRipple} from 'react-native-paper'
 import {useNavigation} from '@react-navigation/native'
 import {NEWS_DETAIL} from '../../consts/Routes'
+import {formatDateTimeAgo} from '../../utils'
 
 export default ({data}) => {
 
@@ -27,7 +28,7 @@ export default ({data}) => {
                     <View style={{flex: 1}}>
                         <Text b style={style.title} numberOfLines={3}>{data.title}</Text>
                         <Text style={style.subtext} numberOfLines={1}>{data.byline}</Text>
-                        <Text style={style.subtext}>Published: {data.published_date}</Text>
+                        <Text style={style.subtext}>Published: {formatDateTimeAgo(data.published_date)}</Text>
                     </View>
                 </Row>
             </TouchableRipple>

@@ -2,6 +2,7 @@ import React from 'react'
 import {ScrollView, StyleSheet} from 'react-native'
 import {Image, Button, Text, Footer} from '../../components'
 import {Metrics} from '../../themes'
+import {formatDateTimeAgo} from '../../utils'
 
 export default ({route, navigation}) => {
 
@@ -16,7 +17,7 @@ export default ({route, navigation}) => {
             <ScrollView contentContainerStyle={{padding: Metrics.lg}}>
                 <Text b style={style.title}>{title}</Text>
                 <Text>{byline}</Text>
-                <Text>Published {published_date}</Text>
+                <Text>Published {formatDateTimeAgo(published_date)}</Text>
 
                 <Text b style={style.description}>{abstract}</Text>
             </ScrollView>
