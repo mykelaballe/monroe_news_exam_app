@@ -1,4 +1,4 @@
-import {API_KEY, DEFAULT_CATEGORY} from '../consts'
+import {API_KEY, DEFAULT_CATEGORY} from 'consts'
 import _instance from './instance'
 
 export default {

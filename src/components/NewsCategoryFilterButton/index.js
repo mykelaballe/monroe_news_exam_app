@@ -1,9 +1,9 @@
 import React from 'react'
 import {StyleSheet, Dimensions} from 'react-native'
-import Button from '../Button'
-import {Colors, Metrics} from '../../themes'
+import {Button} from 'components'
+import {Colors, Metrics} from 'themes'
 import {connect} from 'react-redux'
-import Actions from '../../store/actions'
+import Actions from 'store/actions'
 
 const WIDTH = (Dimensions.get('window').width / 3 ) - 25
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
-import * as Scrn from '../screens'
-import {NEWS_LIST, NEWS_DETAIL} from '../consts/Routes'
+import * as Scrn from 'screens'
+import {NEWS_LIST, NEWS_DETAIL} from 'consts/Routes'
 
 const Stack = createStackNavigator()
 

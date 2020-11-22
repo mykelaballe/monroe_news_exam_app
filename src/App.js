@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react'
-import Navigation from './src/navigation'
+import Navigation from 'navigation'
 import NetInfo from '@react-native-community/netinfo'
 import {connect} from 'react-redux'
-import Actions from './src/store/actions'
+import Actions from 'store/actions'
 
 const App = ({setIsNetworkConnected}) => {
 

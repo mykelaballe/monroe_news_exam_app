@@ -1,6 +1,6 @@
 import React from 'react'
 import {View} from 'react-native'
-import {Metrics} from '../../themes'
+import {Metrics} from 'themes'
 
 export default ({h, xl, lg, md, sm, rg, xs}) => {
 

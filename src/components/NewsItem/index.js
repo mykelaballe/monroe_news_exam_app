@@ -1,14 +1,11 @@
 import React from 'react'
 import {View, StyleSheet} from 'react-native'
-import {Metrics} from '../../themes'
-import Text from '../Text'
-import Image from '../Image'
-import Row from '../Row'
-import Spacer from '../Spacer'
+import {Metrics} from 'themes'
+import {Text, Image, Row, Spacer} from 'components'
 import {Surface, TouchableRipple} from 'react-native-paper'
 import {useNavigation} from '@react-navigation/native'
-import {NEWS_DETAIL} from '../../consts/Routes'
-import {formatDateTimeAgo} from '../../utils'
+import {NEWS_DETAIL} from 'consts/Routes'
+import {formatDateTimeAgo} from 'utils'
 import ContentLoader, {Rect} from 'react-content-loader/native'
 
 const Loader = () => (

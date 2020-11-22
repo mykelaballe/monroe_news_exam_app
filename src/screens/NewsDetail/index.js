@@ -1,8 +1,8 @@
 import React from 'react'
 import {ScrollView, StyleSheet, Dimensions} from 'react-native'
-import {Image, Button, Text, Footer} from '../../components'
-import {Colors, Metrics} from '../../themes'
-import {formatDateTimeAgo} from '../../utils'
+import {Image, Button, Text, Footer} from 'components'
+import {Colors, Metrics} from 'themes'
+import {formatDateTimeAgo} from 'utils'
 import ContentLoader, {Rect} from 'react-content-loader/native'
 
 const IMAGE_WIDTH = Dimensions.get('window').width

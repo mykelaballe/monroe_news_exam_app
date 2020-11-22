@@ -1,6 +1,6 @@
 import React from 'react'
 import {Dimensions} from 'react-native'
-import {Colors} from '../../themes'
+import {Colors} from 'themes'
 import ContentLoader, {Rect} from 'react-content-loader/native'
 
 export default () => (

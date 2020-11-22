@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import {View, StyleSheet, InteractionManager} from 'react-native'
 import {Picker} from '@react-native-picker/picker'
-import {NewsCategoryFilterButton, NewsItem, Text, FlatList, Row, Spacer, ActivityIndicator} from '../../components'
-import {Colors, Metrics} from '../../themes'
+import {NewsCategoryFilterButton, NewsItem, Text, FlatList, Row, Spacer} from 'components'
+import {Colors, Metrics} from 'themes'
 import {connect} from 'react-redux'
-import Actions from '../../store/actions'
+import Actions from 'store/actions'
 import Loader from './Loader'
 
 const Scrn = ({attempting, list, location, attemptGetList}) => {

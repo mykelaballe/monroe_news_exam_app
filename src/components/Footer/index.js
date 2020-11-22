@@ -1,6 +1,6 @@
 import React from 'react'
 import {View, StyleSheet} from 'react-native'
-import {Metrics} from '../../themes'
+import {Metrics} from 'themes'
 
 export default ({children}) => <View style={style.container}>{children}</View>
 
