@@ -6,11 +6,14 @@ import {Colors, Metrics} from 'themes'
 import {connect} from 'react-redux'
 import Actions from 'store/actions'
 import Loader from './Loader'
+import {TextInput, TouchableRipple} from 'react-native-paper'
 
-const Scrn = ({attempting, list, location, attemptGetList}) => {
+const Scrn = ({attempting, list, listHolder, location, attemptGetList, setList}) => {
 
     const [categories, setCategories] = useState([])
     const [locations, setLocations] = useState([])
+    const [keyword, setKeyword] = useState('')
+    const [showKeyword, setShowKeyword] = useState(false)
 
     useEffect(() => {
         InteractionManager.runAfterInteractions(() => {
@@ -28,6 +31,13 @@ const Scrn = ({attempting, list, location, attemptGetList}) => {
             attemptGetList()
         })
     },[])
+
+    const handleChangeKeyword = text => {
+        setKeyword(text)
+        setList(listHolder.filter(l => (l.title.toLowerCase().indexOf(text.toLowerCase()) >= 0 || l.abstract.toLowerCase().indexOf(text.toLowerCase())) >= 0 ))
+    }
+
+    const handleToggleKeyword = () => setShowKeyword(prevShowKeyword => !prevShowKeyword)
 
     const handleChangeLocation = value => attemptGetList({location: value})
 
@@ -55,12 +65,19 @@ const Scrn = ({attempting, list, location, attemptGetList}) => {
                 
                 <Spacer />
                 
-                <Picker style={style.picker}>
-                    <Picker.Item label="Keywords" value="" />
-                    <Picker.Item label="Java" value="java" />
-                    <Picker.Item label="Java" value="java" />
-                </Picker>
+                <TouchableRipple onPress={handleToggleKeyword} style={style.keywordBtn}>
+                    <Text style={{fontSize:16}}>Keywords</Text>
+                </TouchableRipple>
             </Row>
+
+            {showKeyword &&
+            <TextInput
+                placeholder='Enter keyword here...'
+                value={keyword}
+                onChangeText={handleChangeKeyword}
+                autoCapitalize='none'
+            />
+            }
 
             {attempting && <Loader />}
 
@@ -88,17 +105,26 @@ const style = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.light,
         borderRadius: Metrics.sm
+    },
+    keywordBtn: {
+        flex:1,
+        backgroundColor:Colors.light,
+        alignItems:'center',
+        justifyContent:'center',
+        padding:Metrics.rg
     }
 })
 
 const mapStateToProps = ({news}) => ({
     attempting: news.attempting,
     list: news.list,
+    listHolder: news.listHolder,
     location: news.location
 })
 
 const mapDispatchToProps = dispatch => ({
-    attemptGetList: payload => dispatch(Actions.Creators.attemptGetNewsList(payload))
+    attemptGetList: payload => dispatch(Actions.Creators.attemptGetNewsList(payload)),
+    setList: list => dispatch(Actions.Creators.setNewsList(list))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Scrn)

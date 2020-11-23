@@ -47,6 +47,7 @@ function * getList({payload = {}}) {
         }
 
         yield put(Actions.Creators.setNewsList(list))
+        yield put(Actions.Creators.setNewsListHolder(list))
     }
     catch(err) {
         alert(err)
